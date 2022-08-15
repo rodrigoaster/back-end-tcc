@@ -110,7 +110,7 @@ module.exports = class userController {
         if(req.headers.authorization) {
             
             const token = getToken(req);
-            const decoded = jwt.verify(token, 'meutoken');
+            const decoded = jwt.verify(token, process.env.SECRET);
 
             currentUser = await User.findByPk(decoded.id);
 

@@ -17,6 +17,7 @@
     "sequelize": "^6.21.3"
   },
   "scripts": {
-    "start": "nodemon index.js localhost 5050"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   }
 }
