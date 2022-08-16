@@ -61,11 +61,12 @@ module.exports = class userController {
         try {
             await User.create({user_Name, user_CPF, user_Email, user_Password: encryptPass}); 
 
-            res.status(200).json({ message: "Cadastro realizado com sucesso!" })           
+            res.status(200).json({ message: "Cadastro realizado com sucesso!" })  
         } catch (err) {
             res.status(422).json({ message: "Não foi possível criar o usuário, por favor, tente mais tarde.", error: err })
             return
         }
+        
                
     }
 
