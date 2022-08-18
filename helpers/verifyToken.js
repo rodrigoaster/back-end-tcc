@@ -14,7 +14,7 @@ const verifyToken = (req, res, next) => {
     };
     
     try {
-        req.User = jwt.verify(token, "meutoken");
+        req.User = jwt.verify(token, process.env.SECRET);
         next();
     } catch(err) {
         res.status(400).json({ message: "Token inválido!" });

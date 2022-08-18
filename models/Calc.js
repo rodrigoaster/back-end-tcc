@@ -22,7 +22,7 @@ const Calc = db.define('tb_Calcs', {
         allowNull: false
     },
     calc_QuantHours: {
-        type: DataTypes.DECIMAL(3,1),
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     calc_QuantDays: {

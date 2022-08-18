@@ -146,6 +146,10 @@ module.exports = class userController {
     static async updateUser(req, res) {
         const { user_Id } = req.params;
         const { user_Name, user_CPF, user_Email, user_Password, user_ConfirmPassword } = req.body;
+
+        if(req.file) {
+            req.file.filename
+        }
         
         const token = getToken(req)
         const user = await getUserByToken(token);  

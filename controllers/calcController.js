@@ -9,14 +9,10 @@ module.exports = class calcController {
         const { calc_Eletro, calc_Potencia, calc_QuantEletro, calc_QuantHours, calc_QuantDays, calc_Consumo, calc_Gasto } = req.body;
 
         const token = getToken(req)
+        
         const user = await getUserByToken(token);
 
         
-        console.log(user)
-        if(!user) {
-            res.status(422).json({ message: "Acesso negado!" })
-        }
-
         if(!calc_Potencia) {
             res.status(422).json({ message: "A potência é obrigatória!"})
             return
@@ -58,9 +54,32 @@ module.exports = class calcController {
 
         try {
             await Calc.create(variablesCalc); 
-            res.status(200).json({message: 'deu certo pai, tu é pica'});
+            res.status(200).json({message: 'Cálculo realizado com sucesso!'});
         } catch(err) {
-            res.status(200).json({message: 'deu errado danado, olha ai' + err});
+            res.status(200).json({message: 'Erro no cálculo'});
         }
+    }
+
+    static async checkCalc(req, res) {
+        const token = getToken(req)
+
+        if(!token) {
+            res.status(422).json({ message: "Acesso negado!" })
+        }
+
+        const user = await getUserByToken(token);
+
+        if(!user) {
+            res.status(422).json({ message: "Acesso negado!" })
+        }
+
+        try {
+            const register = await Calc.findAll();
+            res.status(200).json({ message: "Registro encontrado!" , register: register})
+        } catch(err) {
+            res.status(422).json({ message: "Registro não encontrado!" })
+        }
+
+        
     }
 }
