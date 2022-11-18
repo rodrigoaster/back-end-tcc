@@ -17,22 +17,19 @@ module.exports = class calcController {
             res.status(422).json({ message: "A potência é obrigatória!"})
             return
         }
-
         if(!calc_QuantEletro) {
             res.status(422).json({ message: "A quantidade de eletrodomésticos é obrigatória!"})
             return
         }
-
         if(!calc_QuantHours) {
             res.status(422).json({ message: "As horas são obrigatórias!"})
             return
         }
-
         if(!calc_QuantDays) {
             res.status(422).json({ message: "Os dias são obrigatórios!"})
             return
         }
-
+        
         const calculoConsumo = (calc_QuantEletro * calc_Potencia * calc_QuantHours * calc_QuantDays) / 1000;
 
         if(!calculoConsumo) {
